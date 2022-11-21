@@ -1,6 +1,6 @@
 import { shuffleArray } from './utils';
 
-const BASE_URL = process.env.URL
+// const BASE_URL = process.env.URL
 
 export type Question = {
     category: string;
@@ -20,7 +20,7 @@ export type Question = {
   export type QuestionsState = Question & { answers: string[] };
   
   export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty): Promise<QuestionsState[]> => {
-    const endpoint = `BASE_URL`;
+    const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
     const data = await (await fetch(endpoint)).json();
     return data.results.map((question: Question) => ({
       ...question,
